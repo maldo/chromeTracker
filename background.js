@@ -52,18 +52,3 @@ function updateTime(urlActive, timeStamp) {
 	}
 	console.log(urls)
 }
-
-/*function getCurrentActiveTab() {
-    chrome.tabs.query({
-        currentWindow: true,
-        active: true
-    }, function(tabs) {
-    	let url + tabs[0].url;
-        getURL(tabs[0].url);
-        clearInterval(interval);
-        interval = null;
-        interval = setInterval(function() {
-            ();
-        }, updateTime);
-    });
-};*/
