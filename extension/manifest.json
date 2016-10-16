@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "Wracker",
+  "description": "Wakoopa JavaScript specialist assignment",
+  "version": "1.0",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "alarms",
+    "webNavigation",
+    "*://*/*"
+  ]
+}
