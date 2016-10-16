@@ -3,6 +3,10 @@ const bodyParser = require('body-parser')
 
 const app = express();
 
+/*
+ * Used as middleware for logging the date,
+ * in production winston should be used
+ */
 let customLogger = function (req, res, next) {
 	console.log('LOGGED - ' + new Date());
 	next();
@@ -10,6 +14,7 @@ let customLogger = function (req, res, next) {
 
 app.use(customLogger);
 
+// Body json parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

@@ -39,6 +39,7 @@ function updateTime(urlActive, timeStamp) {
 		data = urls[url];
 		if(data.current && urlActive != url) {
 			data.current = false;
+            // Update time duration from timestamp minus the timestamp of the last change
 			data.time += timeStamp - data.delta;
 			urls[url] = data;
 		}
@@ -50,6 +51,7 @@ chrome.alarms.create('Wracker', {delayInMinutes: 0.1, periodInMinutes: period/60
 
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
+    // Create the array of data for each url
 	let to_send = [];
 	for(let url in urls){
 		let data = urls[url];
@@ -68,6 +70,10 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 	sendData(to_send);
 });
 
+/*
+ * Post the data to the backend and 
+ * remove other urls if the request is OK
+ */
 function sendData(to_send) {
 	let xhr = new XMLHttpRequest();
 
@@ -76,7 +82,6 @@ function sendData(to_send) {
     // Set correct header for form data 
     xhr.setRequestHeader('Content-type', 'application/json');
 
-    // Handle request state change events
     xhr.onreadystatechange = function() { 
         // If the request completed
         if (xhr.readyState === 4) {
